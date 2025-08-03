@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<script src='//libtl.com/sdk.js' data-zone='9663977' data-sdk='show_9663977'></script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fast Eran - ViralPay BD</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #2c003e, #000842, #FFD700);
+      background-size: 600% 600%;
+      animation: gradientFlow 12s ease infinite;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      background: rgba(15, 15, 25, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 30px 25px;
+      border-radius: 20px;
+      width: 380px;
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.3), 0 0 50px rgba(0, 0, 0, 0.8);
+      border: 2px solid #FFD700;
+      position: relative;
+      text-align: center;
+    }
+
+    .container::before {
+      content: "";
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      bottom: -8px;
+      left: -8px;
+      background: linear-gradient(45deg, #FFD700, #4B0082);
+      z-index: -1;
+      filter: blur(20px);
+      opacity: 0.3;
+      border-radius: 30px;
+      animation: pulseLight 6s infinite;
+    }
+
+    @keyframes pulseLight {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 0.5; }
+    }
+
+    h1 {
+      color: #FFD700;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      text-shadow: 0 0 15px #FFD700;
+    }
+
+    .developer {
+      background: linear-gradient(to right, #8e2de2, #4a00e0);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 14px;
+      color: #fff;
+      box-shadow: 0 0 10px #8e2de2;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+
+    .stats p {
+      font-size: 16px;
+      color: #FFD700;
+      margin: 6px 0;
+    }
+
+    .progress-circle {
+      width: 100px;
+      height: 100px;
+      margin: 20px auto;
+      border: 5px solid #FFD700;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, #1e1e2f, #000);
+      box-shadow: 0 0 15px #FFD700;
+    }
+
+    .progress-circle span {
+      font-size: 20px;
+      font-weight: bold;
+      color: #FFD700;
+    }
+
+    .buttons button {
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .buttons button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #FFD700;
+    }
+
+    #refer-btn {
+      background: linear-gradient(to right, #FF416C, #FF4B2B);
+      color: #fff;
+    }
+
+    #watch-ad-btn {
+      background: linear-gradient(to right, #FFD700, #FFA500);
+      color: #000;
+    }
+
+    #auto-ad-btn {
+      background: linear-gradient(to right, #43e97b, #38f9d7);
+      color: #000;
+    }
+
+    #stop-auto-btn {
+      background: linear-gradient(to right, #ff0844, #ffb199);
+      color: #fff;
+    }
+
+    #join-tg-bonus {
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      color: #000;
+    }
+
+    .withdraw-section {
+      display: none;
+      background-color: rgba(255, 255, 255, 0.08);
+      padding: 20px;
+      margin-top: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    }
+
+    .withdraw-section h3 {
+      color: #FFD700;
+      margin-bottom: 12px;
+    }
+
+    .withdraw-section input,
+    .withdraw-section select {
+      width: 90%;
+      margin: 8px auto;
+      display: block;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .withdraw-section button {
+      background: linear-gradient(to right, #FFD700, #00FF87);
+      color: #000;
+      font-weight: bold;
+      box-shadow: 0 0 8px #FFD700;
+    }
+
+    #video-container {
+      display: none;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Fast Eran</h1>
+    <div class="developer">ViralPay BD</div>
+    <div class="user-info">
+      <p>Welcome, <span id="user-name"></span></p>
+    </div>
+    <div class="stats">
+      <p>Watched Ads: <span id="watched-ads">0</span></p>
+      <p>Earned Points: <span id="earned-points">0.00</span></p>
+    </div>
+    <div class="progress-circle">
+      <span id="ads-progress">0%</span>
+    </div>
+    <div class="buttons">
+      <button id="refer-btn" onclick="copyReferralLink()">Refer Friend (Top10Friend)</button>
+      <button id="watch-ad-btn" onclick="watchAd()">Watch Ad</button>
+      <button id="auto-ad-btn" onclick="startAutoAds()">Auto Show Ads</button>
+      <button id="stop-auto-btn" onclick="stopAutoAds()" disabled>Stop Auto Ads</button>
+      <button id="join-tg-bonus" onclick="joinTelegramBonus()">Join Telegram Bonus 50</button>
+      <button onclick="showWithdrawForm()">Withdrawal Request</button>
+    </div>
+    <div id="video-container">
+      <iframe width="280" height="158" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <p style="color:#FFD700; font-size:12px;">Watch full video to earn 1 point</p>
+    </div>
+    <div id="withdraw-section" class="withdraw-section">
+      <h3>Withdrawal</h3>
+      <input type="number" id="withdraw-amount" placeholder="Enter points to withdraw" min="5">
+      <select id="payment-method">
+        <option value="Bkash">Bkash</option>
+        <option value="Nagad">Nagad</option>
+        <option value="Manual">Manual Withdraw</option>
+      </select>
+      <input type="text" id="withdraw-phone" placeholder="Enter phone number">
+      <button onclick="withdrawPoints()">Withdraw</button>
+      <p id="withdraw-status"></p>
+    </div>
+  </div> <script>
+    const MIN_WITHDRAW_POINTS = 1;
+    const ADMIN_USER_ID = "-1002844104063";
+    const BOT_TOKEN = "8454812960:AAGK5iWgJvSHBlZfLSafDUdB2eWLbJ0FYEg";
+    const YOUTUBE_VIDEOS = [
+      "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      "https://www.youtube.com/embed/9bZkp7q19f0",
+      "https://www.youtube.com/embed/JGwWNGJdvx8"
+    ];
+    let watchedAdsCount = 0;
+    let earnedPoints = 0.00;
+    let autoAdInterval;
+    let currentVideo = null;
+
+    const telegramUserName = "@exampleUser";
+    document.getElementById("user-name").textContent = telegramUserName;
+
+    if (localStorage.getItem('watchedAdsCount')) {
+      watchedAdsCount = parseInt(localStorage.getItem('watchedAdsCount'));
+      earnedPoints = parseFloat(localStorage.getItem('earnedPoints'));
+      document.getElementById('watched-ads').textContent = watchedAdsCount;
+      document.getElementById('earned-points').textContent = earnedPoints.toFixed(2);
+    }
+
+function copyReferralLink() {
+  const referralLink = "https://t.me/fasteran100_bot";
+  navigator.clipboard.writeText(referralLink).then(() => {
+    alert("Referral link copied! Share it with friends on Telegram.");
+    
+    // একবারের বেশি পয়েন্ট না দেওয়ার জন্য চেক
+    if (!localStorage.getItem('referralCopied')) {
+      earnedPoints += 15.00;
+      updateStats();
+      localStorage.setItem('referralCopied', 'true');
+      alert("You earned 15 points for referring!");
+    } else {
+      alert("You have already claimed your referral reward.");
+    }
+
+  }).catch(err => {
+    alert("Failed to copy referral link.");
+    console.error(err);
+  });
+}
+
+    function watchAd() {
+      if (typeof show_9663977 === 'function') {
+        show_9663977().then(() => {
+          watchedAdsCount++;
+          earnedPoints += 0.50;
+          updateStats();
+          updateProgressCircle();
+        });
+      }
+    }
+
+function joinTelegramBonus() {
+  // যদি ইউজার আগে বোনাস না পেয়ে থাকে
+  if (!localStorage.getItem('tgBonusClaimed')) {
+    earnedPoints += 50.00;
+    updateStats();
+    localStorage.setItem('tgBonusClaimed', 'true');
+    alert("Congratulations! You received 50 bonus points!");
+  } else {
+    alert("You have already claimed the Telegram bonus.");
+  }
+  // নতুন ট্যাবে লিংক খুলতে:
+  window.open("https://t.me/viralpaybdsupport", "_blank");
+}
+
+    function watchVideo() {
+      const videoContainer = document.getElementById('video-container');
+      const iframe = videoContainer.querySelector('iframe');
+      const randomVideo = YOUTUBE_VIDEOS[Math.floor(Math.random() * YOUTUBE_VIDEOS.length)];
+      iframe.src = randomVideo + "?autoplay=1";
+      videoContainer.style.display = 'block';
+      currentVideo = { url: randomVideo, startTime: Date.now(), watched: false };
+
+      const videoCheckInterval = setInterval(() => {
+        if (currentVideo && !currentVideo.watched) {
+          const timeWatched = (Date.now() - currentVideo.startTime) / 1000;
+          if (timeWatched >= 120) {
+            currentVideo.watched = true;
+            earnedPoints += 1.00;
+            updateStats();
+            alert('You earned 1 point for watching the full video!');
+            clearInterval(videoCheckInterval);
+          }
+        } else {
+          clearInterval(videoCheckInterval);
+        }
+      }, 1000);
+    }
+
+    function startAutoAds() {
+      autoAdInterval = setInterval(watchAd, 5000);
+      document.getElementById('auto-ad-btn').disabled = true;
+      document.getElementById('stop-auto-btn').disabled = false;
+    }
+
+    function stopAutoAds() {
+      clearInterval(autoAdInterval);
+      document.getElementById('auto-ad-btn').disabled = false;
+      document.getElementById('stop-auto-btn').disabled = true;
+    }
+
+function showWithdrawForm() {
+  if (earnedPoints < 1) {
+    alert("❌ You need at least 1 points to request a withdrawal.");
+    return;
+  }
+
+  document.getElementById('withdraw-section').style.display = 'block';
+  document.getElementById('video-container').style.display = 'none';
+}
+
+    function withdrawPoints() {
+      const amount = document.getElementById('withdraw-amount').value;
+      const method = document.getElementById('payment-method').value;
+      const phone = document.getElementById('withdraw-phone').value;
+
+      if (amount < MIN_WITHDRAW_POINTS) {
+        document.getElementById('withdraw-status').textContent = `Minimum withdrawal amount is ${MIN_WITHDRAW_POINTS} points.`;
+        return;
+      }
+
+      if (amount > earnedPoints) {
+        document.getElementById('withdraw-status').textContent = `Insufficient balance. You have ${earnedPoints.toFixed(2)} points.`;
+        return;
+      }
+
+      earnedPoints -= parseFloat(amount);
+      updateStats();
+
+      const msg = `ðŸŸ¡ *Withdraw Request* ðŸŸ¡\nðŸ‘¤ User: ${telegramUserName}\nðŸ’° Points: ${amount}\nðŸ“± Method: ${method}\nðŸ“ž Number: ${phone}\nðŸ•’ Time: ${new Date().toLocaleString()}`;
+      sendTelegram(msg);
+
+      document.getElementById('withdraw-status').textContent = 'âœ… Withdrawal request sent successfully!';
+      document.getElementById('withdraw-amount').value = '';
+      document.getElementById('withdraw-phone').value = '';
+    }
+
+    function updateStats() {
+      document.getElementById('watched-ads').textContent = watchedAdsCount;
+      document.getElementById('earned-points').textContent = earnedPoints.toFixed(2);
+      localStorage.setItem('watchedAdsCount', watchedAdsCount);
+      localStorage.setItem('earnedPoints', earnedPoints.toFixed(2));
+    }
+
+    function updateProgressCircle() {
+      const percentage = Math.min((watchedAdsCount / 10) * 100, 100);
+      document.getElementById('ads-progress').textContent = `${Math.floor(percentage)}%`;
+    }
+
+    function sendTelegram(message) {
+      const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+      fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: ADMIN_USER_ID,
+          text: message,
+          parse_mode: "Markdown"
+        })
+      })
+      .then(res => res.json())
+      .then(data => console.log("Message sent to Telegram", data))
+      .catch(err => console.error("Telegram Error:", err));
+    }
+  </script>
+
+<!-- আপনার মূল কনটেন্ট -->
+...
+<!-- নিচে অ্যাড -->
+<script type='text/javascript' src='//pl26942056.profitableratecpm.com/e9/71/cb/e971cb51bff4286deb8e3f3bdc652cc7.js'></script>
+</body>
+</html>
